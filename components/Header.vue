@@ -1,9 +1,8 @@
 <template>
-  <div>
-    <!-- <Header /> -->
-    <b-row class="mt-3">
+  <b-container fluid>
+    <b-row class="pt-3 mx-5 d-flex align-items-center">
       <b-col class="col-md-3">
-        <Sidebar />
+        <Logo />
       </b-col>
       <b-col>
         <span class="title"> Home </span>
@@ -16,14 +15,15 @@
         ></b-form-input>
       </b-col>
     </b-row>
-  </div>
+  </b-container>
 </template>
 
 <script>
 export default {
-  name: 'IndexPage',
+  name: 'HeaderCom',
 }
 </script>
+
 <style scoped>
 .title {
   font-size: 32px;
