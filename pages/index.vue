@@ -1,21 +1,15 @@
 <template>
-  <div>
-    <!-- <Header /> -->
-    <b-row class="mt-3">
-      <b-col class="col-md-3">
-        <Sidebar />
-      </b-col>
-      <b-col>
-        <span class="title"> Home </span>
-      </b-col>
-      <b-col>
-        <b-form-input
-          id="input-2"
-          placeholder="Enter name"
-          required
-        ></b-form-input>
-      </b-col>
-    </b-row>
+  <div class="d-flex align-items-center">
+    <b-col>
+      <span class="title font-weight-bold"> Home </span>
+    </b-col>
+    <b-col>
+      <b-form-input
+        id="input-2"
+        placeholder="Enter name"
+        required
+      ></b-form-input>
+    </b-col>
   </div>
 </template>
 
