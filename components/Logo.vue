@@ -1,5 +1,6 @@
 <template>
   <span id="logo"> Diskusiaza </span>
+  <!-- <img src="/logo.svg" alt="" /> -->
 </template>
 
 <script>
