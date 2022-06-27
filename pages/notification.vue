@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex">
-    <div id="mid" class="col-md-7">
+    <b-col id="mid" class="col-md-7">
       <Header :judul="judul" />
       <div class="d-flex mt-3 mb-5 justify-content-center">
         <b-button
@@ -24,24 +24,10 @@
         :data="data"
         :index="data.id"
       />
-      <!-- <div v-for="(data, index) in ruang" :key="index" class="d-flex my-3">
-        <b-img-lazy :src="data.display_profile" width="70px" />
-        <div class="ml-3">
-          <p class="text-secondary font-ruang">
-            {{ data.title }} - Dikirimkan oleh {{ data.by }} - {{ data.date }}
-            <span class="font-status font-weight-bold d-block">
-              {{ data.status }}
-            </span>
-          </p>
-        </div>
-        <b-button variant="white" class="ml-auto mb-3" size="sm">
-          <span class="material-icons"> more_horiz </span>
-        </b-button>
-      </div> -->
-    </div>
-    <div id="right" class="mt-2 text-start">
+    </b-col>
+    <b-col id="right" class="mt-2 text-start">
       <RightSide />
-    </div>
+    </b-col>
   </div>
 </template>
 

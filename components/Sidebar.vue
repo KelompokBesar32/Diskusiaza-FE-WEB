@@ -71,7 +71,7 @@ export default {
         { caption: 'Bookmarks', logo: 'bookmark', link: '#' },
         { caption: 'Jawab', logo: 'edit', link: '#' },
         { caption: 'Ruang', logo: 'group', link: '/ruang' },
-        { caption: 'Profil', logo: 'person', link: '#' },
+        { caption: 'Profil', logo: 'person', link: '/profil' },
       ],
     }
   },

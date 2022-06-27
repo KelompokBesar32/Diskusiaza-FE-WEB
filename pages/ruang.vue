@@ -4,14 +4,14 @@
       <Header :judul="judul" />
       <div class="d-flex mt-3 justify-content-center">
         <b-button
-          class="d-flex align-items-center btn-like-or-not btn-ruang mr-5"
+          class="d-flex align-items-center btn-ruang mr-5"
           variant="outline-primary"
         >
           <span class="material-icons"> add_circle_outline </span>
           Buat Ruang
         </b-button>
         <b-button
-          class="d-flex align-items-center btn-like-or-not btn-ruang"
+          class="d-flex align-items-center btn-ruang"
           variant="outline-primary"
         >
           <span class="material-icons"> explore </span>
