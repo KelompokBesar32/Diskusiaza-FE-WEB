@@ -17,17 +17,18 @@
             <p class="social-text">Or Log in with social platforms</p>
             <div class="social-media">
               <a href="#" class="social-icon">
-                <!-- <font-awesome-icon icon="fa-brands fa-apple"
-              />--></a
-              >
-              <a href="#" class="social-icon">
-                <!-- <fa :icon="['fas', 'adjust']"
-              />-->
+                <font-awesome-icon :icon="['fab', 'apple']" />
               </a>
               <a href="#" class="social-icon">
-                <!-- <font-awesome-icon icon="fa-brands fa-facebook"
-              />-->
+                <font-awesome-icon :icon="['fab', 'google']" />
               </a>
+              <a href="#" class="social-icon">
+                <font-awesome-icon
+                  :icon="['fab', 'facebook']"
+                  style="font-size: 22px"
+                />
+              </a>
+              <a href=""></a>
             </div>
           </form>
         </div>
