@@ -1,41 +1,77 @@
 <template>
   <div>
-    <div class="container">
-      <div class="forms-container">
-        <div class="login">
-          <form action="" class="login-form">
-            <h2 class="title">Log In</h2>
-            <div class="input-field">
-              <!-- <i class="fas fa-user"></i> -->
-              <input type="text" placeholder="Username" />
-            </div>
-            <div class="input-field">
-              <!-- <i class="fas fa-lock"></i> -->
-              <input type="password" placeholder="Password" />
-            </div>
-            <input type="submit" value="Login" class="btn solid" />
-            <p class="social-text">Or Log in with social platforms</p>
-            <div class="social-media">
-              <a href="#" class="social-icon">
-                <font-awesome-icon :icon="['fab', 'apple']" />
-              </a>
-              <a href="#" class="social-icon">
-                <font-awesome-icon :icon="['fab', 'google']" />
-              </a>
-              <a href="#" class="social-icon">
-                <font-awesome-icon
-                  :icon="['fab', 'facebook']"
-                  style="font-size: 22px"
-                />
-              </a>
-              <a href=""></a>
-            </div>
-          </form>
+    <section class="form my-4 mx-5">
+      <div class="container">
+        <div class="row no-gutters">
+          <div class="col-lg-6 px-5 pt-5">
+            <h3>Masuk</h3>
+            <form>
+              <div class="from-row">
+                <div class="col-lg-12">
+                  <input
+                    type="email"
+                    placeholder="Email-Adrress"
+                    class="form-control my-3 p-4"
+                  />
+                </div>
+              </div>
+              <div class="from-row">
+                <div class="col-lg-12">
+                  <input
+                    type="password"
+                    placeholder="********"
+                    class="form-control my-3 p-4"
+                  />
+                </div>
+              </div>
+
+              <div class="form-check">
+                <div class="col-lg-12">
+                  <input
+                    id="invalidCheck2"
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    required
+                  />
+                  <label class="form-check-label" for="invalidCheck2">
+                    Ingat Saya</label
+                  >
+                </div>
+              </div>
+
+              <div class="from-row">
+                <div class="col-lg-12">
+                  <button type="button" class="btn1 mt-3 mb-5">Login</button>
+                </div>
+              </div>
+              <p class="social-text">- Or Log in with -</p>
+              <div class="social-media">
+                <a href="#" class="social-icon">
+                  <font-awesome-icon :icon="['fab', 'apple']" />
+                </a>
+                <a href="#" class="social-icon">
+                  <font-awesome-icon :icon="['fab', 'google']" />
+                </a>
+                <a href="#" class="social-icon">
+                  <font-awesome-icon
+                    :icon="['fab', 'facebook']"
+                    style="font-size: 22px"
+                  />
+                </a>
+                <a href=""></a>
+              </div>
+            </form>
+          </div>
+          <div class="col-lg-6">
+            <img src="../assets/login.png" class="img-fluid" alt="" />
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   </div>
 </template>
+
 <script>
 export default {
   name: 'LoginPages',
@@ -49,92 +85,36 @@ export default {
   margin: 0;
   box-sizing: border-box;
 }
-
-body,
-input {
-  font-family: 'Poppins', sans-serif;
+body {
+  background: white;
 }
-
-.container {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  background-color: #fff;
-  overflow: hidden;
+.row {
+  background: #cce4f8;
+  border-radius: 30px;
+  box-shadow: 12px 12px 22px whitesmoke;
 }
-
-.forms-container {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
+img {
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
 }
-
-form {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.title {
-  font-size: 2.2rem;
-  color: #444;
-  margin-bottom: 10px;
-}
-
-.input-field {
-  max-width: 380px;
-  width: 100%;
-  height: 55px;
-  background-color: #f0f0f0;
-  margin: 10px 0;
-  border-radius: 55px;
-  display: grid;
-  grid-template-columns: 15% 85%;
-  padding: 0 0.4rem;
-}
-.input-field i {
-  text-align: center;
-  line-height: 55px;
-  color: #acacac;
-  font-size: 1.1rem;
-}
-.input-field input {
-  background: none;
-  outline: none;
-  border: none;
-  line-height: 1;
-  font-weight: 600;
-  font-size: 1.1 rem;
-  color: #333;
-}
-
-.input-field input::placeholder {
-  color: #aaa;
-  font-weight: 500;
-}
-.btn {
-  width: 150px;
-  height: 49px;
+.btn1 {
   border: none;
   outline: none;
-  border-radius: 49px;
-  cursor: pointer;
-  background-color: #5995fd;
-  color: #fff;
-  text-transform: uppercase;
-  font-weight: 600;
-  margin: 10px 0;
-  transition: 0.5s;
+  height: 50px;
+  width: 100%;
+  background-color: blue;
+  color: white;
+  border-radius: 25px;
+  font-weight: bold;
 }
-.btn:hover {
-  background-color: #4d84e2;
+.btn1:hover {
+  background: rgb(76, 182, 201);
+  border: 1px solid;
+  color: black;
 }
-
 .social-text {
-  padding: 0.7rem 0;
+  text-align: center;
+  /* padding: 0.7rem 0; */
   font-size: 1 rem;
 }
 
