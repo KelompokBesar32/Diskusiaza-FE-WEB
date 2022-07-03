@@ -100,6 +100,7 @@
 <script>
 export default {
   name: 'IndexPage',
+  middleware: 'loginOrNot',
   data() {
     return {
       judul: 'Home',

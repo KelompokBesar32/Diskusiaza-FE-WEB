@@ -1,19 +1,16 @@
 <template>
   <div>
-    <nav class="navbar navbar-light bg-light">
-      <a class="navbar-brand" href="#">
-        <img
-          src="../assets/logo.png"
-          width="150"
-          height="50"
-          alt=""
-          style="margin-left: 30%"
-        />
-      </a>
-      <button type="button" class="btn btn-primary" style="margin-right: 10%">
-        Sign Up
-      </button>
-    </nav>
+    <b-nav class="navbar navbar-light bg-light">
+      <b-container>
+        <Logo />
+        <div v-if="$nuxt.$route.path == '/register'">
+          <b-button variant="primary" to="/login" pill> Sign In </b-button>
+        </div>
+        <div v-else>
+          <b-button variant="primary" to="/register" pill> Sign Up </b-button>
+        </div>
+      </b-container>
+    </b-nav>
     <Nuxt />
     <footer>
       <p class="text-center text-muted">

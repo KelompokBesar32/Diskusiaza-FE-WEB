@@ -1,6 +1,7 @@
 <template>
-  <span id="logo"> Diskusiaza </span>
-  <!-- <img src="/logo.svg" alt="" /> -->
+  <NuxtLink class="navbar-brand" to="/login">
+    <img src="~/assets/logo.png" height="40" alt="Logo Diskusiaza" />
+  </NuxtLink>
 </template>
 
 <script>
@@ -9,10 +10,4 @@ export default {
 }
 </script>
 
-<style scoped>
-#logo {
-  font-size: 36px;
-  color: #007add;
-  font-weight: bold;
-}
-</style>
+<style scoped></style>

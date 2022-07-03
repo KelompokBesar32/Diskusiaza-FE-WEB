@@ -34,6 +34,7 @@
 <script>
 export default {
   name: 'NotificationPage',
+  middleware: 'loginOrNot',
   data() {
     return {
       judul: 'Notification',

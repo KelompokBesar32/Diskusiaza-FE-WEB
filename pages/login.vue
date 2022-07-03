@@ -1,117 +1,99 @@
 <template>
-  <div>
-    <section class="form my-4 mx-5">
-      <div class="container">
-        <div class="row no-gutters">
-          <div class="col-lg-6 px-5 pt-5">
-            <h3>Masuk</h3>
-            <form>
-              <div class="from-row">
-                <div class="col-lg-12">
-                  <input
-                    type="email"
-                    placeholder="Email-Adrress"
-                    class="form-control my-3 p-4"
-                  />
-                </div>
-              </div>
-              <div class="from-row">
-                <div class="col-lg-12">
-                  <input
-                    type="password"
-                    placeholder="********"
-                    class="form-control my-3 p-4"
-                  />
-                </div>
-              </div>
-
-              <div class="form-check">
-                <div class="col-lg-12">
-                  <input
-                    id="invalidCheck2"
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    required
-                  />
-                  <label class="form-check-label" for="invalidCheck2">
-                    Ingat Saya</label
-                  >
-                </div>
-              </div>
-
-              <div class="from-row">
-                <div class="col-lg-12">
-                  <button type="button" class="btn1 mt-3 mb-5">Login</button>
-                </div>
-              </div>
-              <p class="social-text">- Or Log in with -</p>
-              <div class="social-media">
-                <a href="#" class="social-icon">
-                  <font-awesome-icon :icon="['fab', 'apple']" />
-                </a>
-                <a href="#" class="social-icon">
-                  <font-awesome-icon :icon="['fab', 'google']" />
-                </a>
-                <a href="#" class="social-icon">
-                  <font-awesome-icon
-                    :icon="['fab', 'facebook']"
-                    style="font-size: 22px"
-                  />
-                </a>
-                <a href=""></a>
-              </div>
-            </form>
-          </div>
-          <div class="col-lg-6">
-            <img src="../assets/login.png" class="img-fluid" alt="" />
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
+  <b-container class="my-4">
+    <b-row class="content">
+      <b-col class="px-5 pt-5 bg-login" cols="6">
+        <b-form @submit.prevent="ON_SUBMIT">
+          <h3>Masuk</h3>
+          <b-form-group id="email" label-for="email" class="mt-3">
+            <b-form-input
+              id="email"
+              v-model="email"
+              type="email"
+              placeholder="Email"
+              required
+            ></b-form-input>
+          </b-form-group>
+          <b-form-group id="password" label-for="password" class="mt-3">
+            <b-form-input
+              id="password"
+              v-model="password"
+              type="password"
+              placeholder="Password"
+              required
+            ></b-form-input>
+          </b-form-group>
+          <b-form-checkbox class="my-3">Ingat Saya</b-form-checkbox>
+          <b-button type="submit" variant="primary" pill class="col-lg-12 mb-3">
+            Submit
+          </b-button>
+          <p class="social-text">- Or Log in with -</p>
+          <b-container class="social-media">
+            <a href="#" class="social-icon">
+              <font-awesome-icon :icon="['fab', 'apple']" />
+            </a>
+            <a href="#" class="social-icon">
+              <font-awesome-icon :icon="['fab', 'google']" />
+            </a>
+            <a href="#" class="social-icon">
+              <font-awesome-icon
+                :icon="['fab', 'facebook']"
+                style="font-size: 22px"
+              />
+            </a>
+          </b-container>
+        </b-form>
+      </b-col>
+      <b-col cols="6" class="m-0 p-0">
+        <img
+          src="~/assets/login.png"
+          class="img-fluid background"
+          alt="Background Side"
+        />
+      </b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
 export default {
   name: 'LoginPages',
   layout: 'auth',
+  middleware: 'isLogin',
+  data() {
+    return {
+      email: '',
+      password: '',
+    }
+  },
+  methods: {
+    async ON_SUBMIT() {
+      const data = {
+        email: this.email,
+        password: this.password,
+      }
+      await this.$store.dispatch('SIGN_IN', data)
+    },
+  },
 }
 </script>
 
 <style>
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+.content {
+  margin: 0 80px;
 }
-body {
-  background: white;
-}
-.row {
+
+.bg-login {
   background: #cce4f8;
-  border-radius: 30px;
-  box-shadow: 12px 12px 22px whitesmoke;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
 }
-img {
+.background {
+  height: 75vh;
+  width: 100%;
   border-top-right-radius: 30px;
   border-bottom-right-radius: 30px;
 }
-.btn1 {
-  border: none;
-  outline: none;
-  height: 50px;
-  width: 100%;
-  background-color: blue;
-  color: white;
-  border-radius: 25px;
-  font-weight: bold;
-}
-.btn1:hover {
-  background: rgb(76, 182, 201);
-  border: 1px solid;
-  color: black;
-}
+
 .social-text {
   text-align: center;
   /* padding: 0.7rem 0; */

@@ -39,6 +39,7 @@
 <script>
 export default {
   name: 'ProfilePage',
+  middleware: 'loginOrNot',
   data() {
     return {
       judul: 'Profil',
