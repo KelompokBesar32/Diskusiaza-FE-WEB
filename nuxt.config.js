@@ -1,5 +1,8 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
+  target: 'static',
+  ssr: false,
+
   head: {
     title: 'Diskusiaza | Tempat Ngumpulnya Anak-Anak',
     meta: [
@@ -47,6 +50,7 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     baseURL: 'https://capstone-go.dikatest.xyz',
+    credentials: false,
     // proxy: true,
   },
 

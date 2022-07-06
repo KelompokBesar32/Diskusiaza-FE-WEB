@@ -19,7 +19,9 @@ export const actions = {
   },
   async SIGN_IN({ commit }, payload) {
     try {
-      const res = await this.$axios.post('/auth/login', payload)
+      const res = await this.$axios.post('/auth/login', payload, {
+        headers: { 'Access-Control-Allow-Origin': '*' },
+      })
       commit('SET_USER', res.data.token)
       this.$router.push({ path: '/' })
     } catch (e) {
