@@ -30,9 +30,30 @@
             Mengikuti</b-col
           >
         </b-row>
+        <b-row class="text-center mt-4 mb-5" id="threads">
+          <b-col>
+            <a href="#" class="thread">Threads</a>
+          </b-col>
+          <b-col>
+            <a href="#" class="thread">Thread & Balasan</a>
+          </b-col>
+          <b-col>
+            <a href="#" class="thread">Media</a>
+          </b-col>
+        </b-row>
+        <hr />
       </div>
     </b-col>
-    <b-col id="right"> Tes </b-col>
+    <div id="right" class="mt-3 ml-3 w-100">
+      <h5>Untuk anda ikuti</h5>
+      <Follow
+        v-for="(data, index) in follow"
+        :key="index"
+        :data="data"
+        :index="data.id"
+        class="mt-4"
+      />
+    </div>
   </div>
 </template>
 
@@ -54,7 +75,23 @@ export default {
         pengikut: 99,
         mengikuti: 200,
       },
-    }
+      judul: 'Follow',
+      follow: [
+        {
+          follow_profile:
+            'https://cdn0-production-images-kly.akamaized.net/_rfkzsaD5kwdXm6Fme_xRPrzjrU=/1200x1200/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/3524834/original/046227400_1627540213-218283699_105887185027278_6019770676297843262_n.jpg',
+          name: 'Reza Penyayang',
+          description: 'Menguasai bahasa alien',
+        },
+        {
+          follow_profile:
+            'https://media.suara.com/pictures/970x544/2020/08/26/96687-padankan-hijab-dengan-masker-dok-instagrammouzaindonesia.jpg',
+          name: 'Intan Puspitasari',
+          description: 'mahasiswa',
+
+        },
+      ],
+    },
   },
 }
 </script>
@@ -83,10 +120,14 @@ export default {
   margin-left: 30px;
 }
 
-#right {
-  background-color: red;
-}
 .btn-ruang {
   border-radius: 20px;
+}
+
+.thread {
+  color: black;
+}
+.thread:hover {
+  color: #007add;
 }
 </style>
