@@ -50,7 +50,7 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     baseURL: 'https://capstone-go.dikatest.xyz',
-    credentials: false,
+    // credentials: false,
     // proxy: true,
   },
 
