@@ -30,7 +30,7 @@
             Mengikuti</b-col
           >
         </b-row>
-        <b-row class="text-center mt-4 mb-5" id="threads">
+        <b-row id="threads" class="text-center mt-4 mb-5" >
           <b-col>
             <a href="#" class="thread">Threads</a>
           </b-col>
@@ -75,7 +75,7 @@ export default {
         pengikut: 99,
         mengikuti: 200,
       },
-      judul: 'Follow',
+      // judul: 'Follow',
       follow: [
         {
           follow_profile:
@@ -91,7 +91,7 @@ export default {
 
         },
       ],
-    },
+    }
   },
 }
 </script>

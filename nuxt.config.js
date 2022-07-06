@@ -48,17 +48,17 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    // baseURL: 'https://capstone-go.dikatest.xyz',
-    proxy: true,
+    baseURL: 'https://capstone-go.dikatest.xyz',
+    // proxy: true,
   },
 
-  proxy: {
-    '/api/': {
-      target: 'https://capstone-go.dikatest.xyz/',
-      pathRewrite: { '^/api/': '' },
-      changeOrigin: true,
-    },
-  },
+  // proxy: {
+  //   '/api/': {
+  //     target: 'https://capstone-go.dikatest.xyz/',
+  //     pathRewrite: { '^/api/': '' },
+  //     changeOrigin: true,
+  //   },
+  // },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
