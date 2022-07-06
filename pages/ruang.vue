@@ -53,6 +53,7 @@
 <script>
 export default {
   name: 'RuangPage',
+  middleware: 'loginOrNot',
   data() {
     return {
       judul: 'Ruang',

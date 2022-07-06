@@ -4,37 +4,37 @@
       <h3>Pilih ruang baca yang kammu sukai</h3>
       <div class="row">
         <div class="card" style="width: 15rem; text-align: center">
-          <img src="../assets/login.png" class="card-img-top" alt="" />
+          <img src="~/assets/login.png" class="card-img-top" alt="" />
           <div class="card-body">
             <a href="#" class="btn btn-primary">Add to Cart</a>
           </div>
         </div>
         <div class="card" style="width: 15rem; text-align: center">
-          <img src="../assets/login.png" class="card-img-top" alt="" />
+          <img src="~/assets/login.png" class="card-img-top" alt="" />
           <div class="card-body">
             <a href="#" class="btn btn-primary">Add to Cart</a>
           </div>
         </div>
         <div class="card" style="width: 15rem; text-align: center">
-          <img src="../assets/login.png" class="card-img-top" alt="" />
+          <img src="~/assets/login.png" class="card-img-top" alt="" />
           <div class="card-body">
             <a href="#" class="btn btn-primary">Add to Cart</a>
           </div>
         </div>
         <div class="card" style="width: 15rem; text-align: center">
-          <img src="../assets/login.png" class="card-img-top" alt="" />
+          <img src="~/assets/login.png" class="card-img-top" alt="" />
           <div class="card-body">
             <a href="#" class="btn btn-primary">Add to Cart</a>
           </div>
         </div>
         <div class="card" style="width: 15rem; text-align: center">
-          <img src="../assets/login.png" class="card-img-top" alt="" />
+          <img src="~/assets/login.png" class="card-img-top" alt="" />
           <div class="card-body">
             <a href="#" class="btn btn-primary">Add to Cart</a>
           </div>
         </div>
         <div class="card" style="width: 15rem; text-align: center">
-          <img src="../assets/login.png" class="card-img-top" alt="" />
+          <img src="~/assets/login.png" class="card-img-top" alt="" />
           <div class="card-body">
             <a href="#" class="btn btn-primary">Add to Cart</a>
           </div>
@@ -46,7 +46,7 @@
       <div class="products-container">
         <div class="product" data-name="p-1">
           <img
-            src="../assets/science.jpg"
+            src="~/assets/science.jpg"
             alt=""
             style="height: 100px; width: 75px"
           />
@@ -54,7 +54,7 @@
         </div>
         <div class="product" data-name="p-2">
           <img
-            src="../assets/politic.jpg"
+            src="~/assets/politic.jpg"
             alt=""
             style="height: 100px; width: 75px"
           />
@@ -62,7 +62,7 @@
         </div>
         <div class="product" data-name="p-3">
           <img
-            src="../assets/broke.jpg"
+            src="~/assets/broke.jpg"
             alt=""
             style="height: 100px; width: 75px"
           />
@@ -70,7 +70,7 @@
         </div>
         <div class="product" data-name="p-4">
           <img
-            src="../assets/psikolog.jpg"
+            src="~/assets/psikolog.jpg"
             alt=""
             style="height: 100px; width: 75px"
           />
@@ -78,7 +78,7 @@
         </div>
         <div class="product" data-name="p-5">
           <img
-            src="../assets/pasangan.jpg"
+            src="~/assets/pasangan.jpg"
             alt=""
             style="height: 100px; width: 75px"
           />
@@ -86,7 +86,7 @@
         </div>
         <div class="product" data-name="p-6">
           <img
-            src="../assets/dinamika.jpg"
+            src="~/assets/dinamika.jpg"
             alt=""
             style="height: 100px; width: 75px"
           />
@@ -101,10 +101,11 @@
 export default {
   name: 'CategoriesPages',
   layout: 'auth',
+  middleware: 'loginOrNot',
 }
 </script>
 
-<style>
+<style scoped>
 * {
   margin: 0;
   padding: 0;
