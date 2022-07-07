@@ -56,16 +56,16 @@ export default {
   axios: {
     baseURL: 'https://capstone-go.dikatest.xyz',
     // credentials: false,
-    proxy: true,
+    proxy: false,
   },
 
-  proxy: {
-    '/api/': {
-      target: 'https://capstone-go.dikatest.xyz/',
-      pathRewrite: { '^/api/': '' },
-      changeOrigin: true,
-    },
-  },
+  // proxy: {
+  //   '/api/': {
+  //     target: 'https://capstone-go.dikatest.xyz/',
+  //     pathRewrite: { '^/api/': '' },
+  //     changeOrigin: true,
+  //   },
+  // },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
