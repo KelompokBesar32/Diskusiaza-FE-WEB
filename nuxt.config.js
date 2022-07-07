@@ -27,7 +27,6 @@ export default {
   plugins: [
     '~/plugins/fontawesome.js',
     '~/plugins/persistedState.client.js',
-    '~/plugins/vue-swal.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -56,7 +55,7 @@ export default {
   axios: {
     baseURL: 'https://capstone-go.dikatest.xyz',
     // credentials: false,
-    proxy: false,
+    // proxy: false,
   },
 
   // proxy: {
