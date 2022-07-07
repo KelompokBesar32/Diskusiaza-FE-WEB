@@ -24,7 +24,11 @@ export default {
   css: ['@fortawesome/fontawesome-svg-core/styles.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/fontawesome.js', '~/plugins/persistedState.client.js'],
+  plugins: [
+    '~/plugins/fontawesome.js', 
+    '~/plugins/persistedState.client.js',
+    '~/plugins/swal.js'
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -45,22 +49,23 @@ export default {
     '@nuxtjs/pwa',
     'nuxt-material-design-icons',
     '@nuxtjs/proxy',
+    'vue-sweetalert2/nuxt',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     baseURL: 'https://capstone-go.dikatest.xyz',
     // credentials: false,
-    // proxy: true,
+    proxy: true,
   },
 
-  // proxy: {
-  //   '/api/': {
-  //     target: 'https://capstone-go.dikatest.xyz/',
-  //     pathRewrite: { '^/api/': '' },
-  //     changeOrigin: true,
-  //   },
-  // },
+  proxy: {
+    '/api/': {
+      target: 'https://capstone-go.dikatest.xyz/',
+      pathRewrite: { '^/api/': '' },
+      changeOrigin: true,
+    },
+  },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {

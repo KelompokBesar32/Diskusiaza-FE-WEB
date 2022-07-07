@@ -102,7 +102,7 @@
             class="my-3"
             value-field="value"
             text-field="text"
-            disabled-field="notEnabled"
+            disabled-field="notEnabled" required
           ></b-form-radio-group>
           <b-button
             type="submit"
