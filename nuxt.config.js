@@ -2,6 +2,7 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   target: 'static',
   ssr: false,
+
   head: {
     title: 'Diskusiaza | Tempat Ngumpulnya Anak-Anak',
     meta: [
@@ -23,7 +24,10 @@ export default {
   css: ['@fortawesome/fontawesome-svg-core/styles.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/fontawesome.js', '~/plugins/persistedState.client.js'],
+  plugins: [
+    '~/plugins/fontawesome.js',
+    '~/plugins/persistedState.client.js',
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -44,12 +48,14 @@ export default {
     '@nuxtjs/pwa',
     'nuxt-material-design-icons',
     '@nuxtjs/proxy',
+    'vue-sweetalert2/nuxt',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: 'https://capstone-go.dikatest.xyz',
-    proxy: false,
+    // baseURL: 'https://capstone-go.dikatest.xyz',
+    // credentials: false,
+    proxy: true,
   },
 
   proxy: {

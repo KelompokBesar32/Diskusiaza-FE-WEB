@@ -69,7 +69,7 @@ export default {
         },
         { caption: 'Message', logo: 'mail', link: '#' },
         { caption: 'Bookmarks', logo: 'bookmark', link: '#' },
-        { caption: 'Jawab', logo: 'edit', link: '#' },
+        { caption: 'Jawab', logo: 'edit', link: '/jawab' },
         { caption: 'Ruang', logo: 'group', link: '/ruang' },
         { caption: 'Profil', logo: 'person', link: '/profil' },
       ],
