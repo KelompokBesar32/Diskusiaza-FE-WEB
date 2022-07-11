@@ -75,7 +75,7 @@ export default {
         pengikut: 99,
         mengikuti: 200,
       },
-      judul: 'Follow',
+
       follow: [
         {
           follow_profile:
@@ -88,10 +88,9 @@ export default {
             'https://media.suara.com/pictures/970x544/2020/08/26/96687-padankan-hijab-dengan-masker-dok-instagrammouzaindonesia.jpg',
           name: 'Intan Puspitasari',
           description: 'mahasiswa',
-
         },
       ],
-    },
+    }
   },
 }
 </script>
