@@ -6,8 +6,20 @@
         <!-- <b-button pill variant="outline-primary"> Simpan </b-button> -->
       </span>
       <div class="mt-3">
-        <img :src="user.foto" alt="" class="img-banner" />
-        <img :src="user.foto" alt="" class="img-dp" />
+        <img
+          v-if="user.foto == ''"
+          src="https://picsum.photos/id/999/200/200"
+          alt="banner image"
+          class="img-banner"
+        />
+        <img v-else :src="user.foto" alt="banner image" class="img-banner" />
+        <img
+          v-if="user.foto == ''"
+          src="https://picsum.photos/id/999/200/200"
+          alt="display profile"
+          class="img-dp"
+        />
+        <img v-else :src="user.foto" alt="display profile" class="img-dp" />
         <b-form class="mt-3" @submit.prevent="onSubmit">
           <b-form-group id="input-group-1" label="Nama: ">
             <b-form-input

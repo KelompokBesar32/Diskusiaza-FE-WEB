@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex mb-3 mt-5">
+  <div class="d-flex mt-2">
     <b-img-lazy :src="data.follow_profile" class="img-dp" />
     <span class="ml-2">
       <h5 class="card-text">{{ data.name }}</h5>

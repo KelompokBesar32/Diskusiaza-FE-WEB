@@ -3,8 +3,20 @@
     <b-col id="mid" class="col-md-7">
       <Header :judul="judul" />
       <div class="mt-3">
-        <img :src="user.foto" alt="banner image" class="img-banner" />
-        <img :src="user.foto" alt="display profile" class="img-dp" />
+        <img
+          v-if="user.foto == ''"
+          src="https://picsum.photos/id/999/200/200"
+          alt="banner image"
+          class="img-banner"
+        />
+        <img v-else :src="user.foto" alt="banner image" class="img-banner" />
+        <img
+          v-if="user.foto == ''"
+          src="https://picsum.photos/id/999/200/200"
+          alt="display profile"
+          class="img-dp"
+        />
+        <img v-else :src="user.foto" alt="display profile" class="img-dp" />
         <b-row class="px-3 mt-1">
           <b-col>
             <h6 class="m-0 profil-nama">{{ fullName }}</h6>
