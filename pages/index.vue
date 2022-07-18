@@ -40,7 +40,7 @@
               <p class="normal font-weight-bold">
                 {{ data.title }}
               </p>
-              <p class="content">
+              <p>
                 {{ data.content }}
               </p>
               <div id="action" class="d-flex align-items-center">
@@ -92,7 +92,7 @@
       </div>
     </b-col>
     <b-col id="right" class="mt-2 text-start">
-      <RightSide/>
+      <RightSide />
     </b-col>
   </div>
 </template>

@@ -49,6 +49,9 @@
                   placeholder="Password"
                   required
                 ></b-form-input>
+                <b-form-invalid-feedback :state="length_password">
+                  Password anda kurang dari 8 karakter
+                </b-form-invalid-feedback>
               </b-form-group>
             </b-col>
             <b-col>
@@ -60,8 +63,9 @@
                   placeholder="Confirm Password"
                   required
                 ></b-form-input>
+
                 <b-form-invalid-feedback :state="validation">
-                  Password anda tidak match
+                  Password anda tidak sama
                 </b-form-invalid-feedback>
               </b-form-group>
             </b-col>
@@ -69,7 +73,11 @@
           <h4 class="title">Tanggal Lahir</h4>
           <b-row>
             <b-col>
-              <b-form-select v-model="tanggal" :options="options.tanggal">
+              <b-form-select
+                id="tanggal"
+                v-model="tanggal"
+                :options="options.tanggal"
+              >
                 <template #first>
                   <b-form-select-option value="" disabled>
                     Tanggal
@@ -78,7 +86,11 @@
               </b-form-select>
             </b-col>
             <b-col>
-              <b-form-select v-model="bulan" :options="options.bulan">
+              <b-form-select
+                id="bulan"
+                v-model="bulan"
+                :options="options.bulan"
+              >
                 <template #first>
                   <b-form-select-option value="" disabled>
                     Bulan
@@ -87,7 +99,11 @@
               </b-form-select>
             </b-col>
             <b-col>
-              <b-form-select v-model="tahun" :options="options.tahun">
+              <b-form-select
+                id="tahun"
+                v-model="tahun"
+                :options="options.tahun"
+              >
                 <template #first>
                   <b-form-select-option value="" disabled>
                     Tahun
@@ -97,12 +113,14 @@
             </b-col>
           </b-row>
           <b-form-radio-group
+            id="jenis_kelamin"
             v-model="jenis_kelamin"
             :options="options.jenis_kelamin"
             class="my-3"
             value-field="value"
             text-field="text"
-            disabled-field="notEnabled" required
+            disabled-field="notEnabled"
+            required
           ></b-form-radio-group>
           <b-button
             type="submit"
@@ -166,19 +184,30 @@ export default {
       // eslint-disable-next-line eqeqeq
       return this.password == this.confirm_password
     },
+
+    length_password() {
+      return this.password.length > 7
+    },
   },
   methods: {
     async ON_SUBMIT() {
-      const dataTanggal = this.tahun + '-' + this.bulan + '-' + this.tanggal
-      const data = {
-        firstname: this.firstname,
-        lastname: this.lastname,
-        email: this.email,
-        password: this.password,
-        tanggal_lahir: dataTanggal,
-        jenis_kelamin: this.jenis_kelamin,
+      if (!this.validation || !this.length_password) {
+        this.$swal.fire({
+          icon: 'error',
+          text: 'Kesalahan Password',
+        })
+      } else {
+        const dataTanggal = this.tahun + '-' + this.bulan + '-' + this.tanggal
+        const data = {
+          firstname: this.firstname,
+          lastname: this.lastname,
+          email: this.email,
+          password: this.password,
+          tanggal_lahir: dataTanggal,
+          jenis_kelamin: this.jenis_kelamin,
+        }
+        await this.$store.dispatch('SIGN_UP', data)
       }
-      await this.$store.dispatch('SIGN_UP', data)
     },
   },
 }
