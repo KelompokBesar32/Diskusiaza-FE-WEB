@@ -32,6 +32,20 @@
         </b-row>
         <b-row id="threads" class="text-center mt-4 mb-5">
           <b-col>
+            <b-tabs content-class="mt-3" align="center">
+              <b-tab title="Threads" active>
+                <b-card-text>Tab contents 1</b-card-text>
+              </b-tab>
+              <b-tab title="Thread & Balasan" class="text-center ml-4 mr-4">
+                <b-card-text>Tab contents 2</b-card-text>
+              </b-tab>
+              <b-tab title="Media">
+                <b-card-text>Tab contents 3</b-card-text>
+              </b-tab>
+            </b-tabs>
+          </b-col>
+
+          <!-- <b-col>
             <a href="#" class="thread">Threads</a>
           </b-col>
           <b-col>
@@ -39,9 +53,8 @@
           </b-col>
           <b-col>
             <a href="#" class="thread">Media</a>
-          </b-col>
+          </b-col> -->
         </b-row>
-        <hr />
       </div>
     </b-col>
     <div id="right" class="mt-3 ml-3 w-100">
@@ -127,5 +140,8 @@ export default {
 }
 .thread:hover {
   color: #007add;
+}
+.threads {
+  border: none;
 }
 </style>
