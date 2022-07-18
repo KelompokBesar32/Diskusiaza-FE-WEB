@@ -30,7 +30,7 @@
             Mengikuti</b-col
           >
         </b-row>
-        <b-row id="threads" class="text-center mt-4 mb-5" >
+        <b-row id="threads" class="text-center mt-4 mb-5">
           <b-col>
             <a href="#" class="thread">Threads</a>
           </b-col>
