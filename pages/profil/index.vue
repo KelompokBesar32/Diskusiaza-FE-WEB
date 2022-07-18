@@ -3,17 +3,19 @@
     <b-col id="mid" class="col-md-7">
       <Header :judul="judul" />
       <div class="mt-3">
-        <img :src="user.banner" alt="" class="img-banner" />
-        <img :src="user.display_pict" alt="" class="img-dp" />
+        <img :src="user.foto" alt="banner image" class="img-banner" />
+        <img :src="user.foto" alt="display profile" class="img-dp" />
         <b-row class="px-3 mt-1">
           <b-col>
-            <h6 class="m-0 profil-nama">{{ user.nama }}</h6>
+            <h6 class="m-0 profil-nama">{{ fullName }}</h6>
             <p class="text-secondary profil-profesi">{{ user.profesi }}</p>
           </b-col>
-          <b-col>
+          <b-col cols="4">
             <b-button
-              class="d-flex align-items-center btn-ruang ml-auto"
+              class="d-flex justify-content-center"
               variant="outline-primary"
+              to="/profil/edit"
+              pill
             >
               <span class="material-icons"> settings </span>
               Edit Profil
@@ -22,19 +24,28 @@
         </b-row>
         <b-row class="text-center mt-3">
           <b-col>
-            <span class="text-primary">{{ user.pengikut }}</span>
-            Pengikut</b-col
-          >
-          <b-col
-            ><span class="text-primary">{{ user.mengikuti }}</span>
-            Mengikuti</b-col
-          >
+            <span v-if="followers == ''" class="text-primary">0</span>
+            <span v-else class="text-primary">{{ followers }}</span>
+            Pengikut
+          </b-col>
+          <b-col>
+            <span v-if="following == ''" class="text-primary">0</span>
+            <span v-else class="text-primary">{{ following }}</span>
+            Mengikuti
+          </b-col>
         </b-row>
         <b-row id="threads" class="text-center mt-4 mb-5">
           <b-col>
             <b-tabs content-class="mt-3" align="center">
               <b-tab title="Threads" active>
-                <b-card-text>Tab contents 1</b-card-text>
+                <b-card-text>
+                  <ThreadsUser
+                    v-for="(thread, index) in threads"
+                    :key="index"
+                    :thread="thread"
+                    :index="thread.id"
+                  />
+                </b-card-text>
               </b-tab>
               <b-tab title="Thread & Balasan" class="text-center ml-4 mr-4">
                 <b-card-text>Tab contents 2</b-card-text>
@@ -44,20 +55,10 @@
               </b-tab>
             </b-tabs>
           </b-col>
-
-          <!-- <b-col>
-            <a href="#" class="thread">Threads</a>
-          </b-col>
-          <b-col>
-            <a href="#" class="thread">Thread & Balasan</a>
-          </b-col>
-          <b-col>
-            <a href="#" class="thread">Media</a>
-          </b-col> -->
         </b-row>
       </div>
     </b-col>
-    <div id="right" class="mt-3 ml-3 w-100">
+    <div id="right" class="mt-3 ml-3">
       <h5>Untuk anda ikuti</h5>
       <Follow
         v-for="(data, index) in follow"
@@ -77,14 +78,13 @@ export default {
   data() {
     return {
       judul: 'Profil',
-      user: {
+      user_dummy: {
         nama: 'Acul Sudrajat',
         total_thread: 15,
         display_pict:
           'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80',
         banner:
           'https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=872&q=80',
-        profesi: 'Sarjana Jomblo',
         pengikut: 99,
         mengikuti: 200,
       },
@@ -103,6 +103,49 @@ export default {
         },
       ],
     }
+  },
+  computed: {
+    user() {
+      return this.$store.state.user
+    },
+
+    followers() {
+      return this.$store.state.followers
+    },
+
+    following() {
+      return this.$store.state.following
+    },
+
+    threads() {
+      return this.$store.state.threads
+    },
+
+    fullName: {
+      get() {
+        return this.user.firstname + ' ' + this.user.lastname
+      },
+    },
+  },
+
+  created() {
+    this.GET_FOLLOWERS()
+    this.GET_FOLLOWING()
+    this.GET_THREADS_BY_USER_ID()
+  },
+
+  methods: {
+    async GET_FOLLOWERS() {
+      await this.$store.dispatch('GET_FOLLOWERS')
+    },
+
+    async GET_FOLLOWING() {
+      await this.$store.dispatch('GET_FOLLOWING')
+    },
+
+    async GET_THREADS_BY_USER_ID() {
+      await this.$store.dispatch('GET_THREADS_BY_USER_ID')
+    },
   },
 }
 </script>
@@ -129,10 +172,6 @@ export default {
   border-radius: 50%;
   margin-top: -50px;
   margin-left: 30px;
-}
-
-.btn-ruang {
-  border-radius: 20px;
 }
 
 .thread {

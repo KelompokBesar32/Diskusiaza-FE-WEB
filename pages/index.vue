@@ -10,10 +10,40 @@
         ></b-img-lazy>
         <div class="d-grid ml-3">
           <b-form-input
+            v-b-modal.my-modal
             placeholder="Apa yang ingin anda tanyakan?"
             required
             class="input-form"
+            readonly
           ></b-form-input>
+
+          <!-- Modal -->
+          <b-modal id="my-modal" title="Pertanyaan" hide-footer>
+            <b-form @submit.prevent="ON_SUBMIT">
+              <b-form-group id="input-pertanyaan">
+                <b-form-input
+                  id="input-1"
+                  v-model="pertanyaan.judul"
+                  type="text"
+                  placeholder="Masukkan judul"
+                  class="mb-2"
+                  required
+                ></b-form-input>
+                <b-form-input
+                  id="input-1"
+                  v-model="pertanyaan.isi"
+                  type="text"
+                  placeholder="Apa yang ingin anda ceritakan?"
+                  class="py-5"
+                  required
+                ></b-form-input>
+              </b-form-group>
+              <b-button type="submit" variant="primary" class="mt-2"
+                >Buat Thread</b-button
+              >
+            </b-form>
+          </b-modal>
+
           <b-button-group size="sm" class="mt-2 d-flex justify-content-between">
             <b-button v-for="(btn, idx) in buttons" :key="idx" variant="white">
               <span class="d-flex justify-content-start align-items-center">
@@ -25,70 +55,12 @@
         </div>
       </div>
       <div class="d-flex flex-column ml-3 mt-5">
-        <div v-for="(data, idx) in profile" :key="idx">
-          <div class="d-flex my-3">
-            <b-img-lazy
-              src="https://picsum.photos/id/999/200/200"
-              rounded="circle"
-              height="40px"
-            />
-            <span class="d-flex flex-column ml-3">
-              <span class="normal">{{ data.user }} - Ikuti</span>
-              <p id="da-secondary-text" class="text-secondary">
-                {{ data.profesi }}
-              </p>
-              <p class="normal font-weight-bold">
-                {{ data.title }}
-              </p>
-              <p>
-                {{ data.content }}
-              </p>
-              <div id="action" class="d-flex align-items-center">
-                <b-button-group size="sm">
-                  <b-button
-                    class="d-flex align-items-center btn-like-or-not"
-                    variant="primary"
-                  >
-                    <span class="material-icons"> arrow_upward </span>
-                    {{ data.like }}
-                  </b-button>
-                  <b-button
-                    class="d-flex align-items-center btn-like-or-not"
-                    variant="danger"
-                  >
-                    <span class="material-icons"> arrow_downward </span>
-                    {{ data.dislike }}
-                  </b-button>
-                </b-button-group>
-                <b-button-group size="sm">
-                  <b-button
-                    class="d-flex align-items-center ml-3"
-                    variant="white"
-                  >
-                    <span class="material-icons"> repeat </span>
-                    {{ data.retweet }}
-                  </b-button>
-                  <b-button
-                    class="d-flex align-items-center mr-3"
-                    variant="white"
-                  >
-                    <span class="material-icons"> chat_bubble_outline </span>
-                    {{ data.comment }}
-                  </b-button>
-                  <b-button
-                    class="d-flex align-items-center ml-5"
-                    variant="white"
-                  >
-                    <span class="material-icons"> turned_in_not </span>
-                  </b-button>
-                  <b-button class="d-flex align-items-center" variant="white">
-                    <span class="material-icons"> more_horiz </span>
-                  </b-button>
-                </b-button-group>
-              </div>
-            </span>
-          </div>
-        </div>
+        <Threads
+          v-for="(thread, index) in all_threads"
+          :key="index"
+          :thread="thread"
+          :index="thread.id"
+        />
       </div>
     </b-col>
     <b-col id="right" class="mt-2 text-start">
@@ -104,49 +76,16 @@ export default {
   data() {
     return {
       judul: 'Home',
+      pertanyaan: {
+        judul: '',
+        isi: '',
+      },
       buttons: [
         { caption: 'Tanya', logo: 'help' },
         { caption: 'Jawab', logo: 'rate_review' },
         { caption: 'Tulis', logo: 'edit' },
       ],
-      profile: [
-        {
-          user: 'Mamat Alkitri',
-          profesi: 'Mahasiswa',
-          title:
-            'Mengapa orang-orang masih memilih jurusan kuliah pendidikan?Bukankah menjadi guru gajinya kecil?',
-          content:
-            'Saya kuliah jurusan Pendidikan Bahasa Inggris di Universitas Brawijaya Malang.',
-          like: '20',
-          dislike: '5',
-          retweet: '30',
-          comment: '14',
-        },
-        {
-          user: 'Mamat Alkitri',
-          profesi: 'Mahasiswa',
-          title:
-            'Mengapa orang-orang masih memilih jurusan kuliah pendidikan?Bukankah menjadi guru gajinya kecil?',
-          content:
-            'Saya kuliah jurusan Pendidikan Bahasa Inggris di Universitas Brawijaya Malang.',
-          like: '20',
-          dislike: '5',
-          retweet: '30',
-          comment: '14',
-        },
-        {
-          user: 'Mamat Alkitri',
-          profesi: 'Mahasiswa',
-          title:
-            'Mengapa orang-orang masih memilih jurusan kuliah pendidikan?Bukankah menjadi guru gajinya kecil?',
-          content:
-            'Saya kuliah jurusan Pendidikan Bahasa Inggris di Universitas Brawijaya Malang.',
-          like: '20',
-          dislike: '5',
-          retweet: '30',
-          comment: '14',
-        },
-      ],
+
       ruang: [
         {
           display_profile:
@@ -175,6 +114,32 @@ export default {
       ],
     }
   },
+
+  computed: {
+    all_threads() {
+      return this.$store.state.all_threads
+    },
+  },
+  created() {
+    this.GET_ALL_THREADS()
+  },
+
+  methods: {
+    async GET_ALL_THREADS() {
+      await this.$store.dispatch('GET_ALL_THREADS')
+    },
+
+    async ON_SUBMIT() {
+      const data = {
+        judul: this.pertanyaan.judul,
+        isi: this.pertanyaan.isi,
+        file: '',
+        kategori_therad_id: '2',
+      }
+      // console.log(data)
+      await this.$store.dispatch('CREATE_THREAD_NOT_IN_RUANG', data)
+    },
+  },
 }
 </script>
 <style scoped>
@@ -183,13 +148,5 @@ export default {
   width: 350px;
   padding: 0 20px;
   font-size: 14px;
-}
-
-#action .material-icons {
-  width: 30px;
-}
-
-.btn-like-or-not {
-  border-radius: 20px;
 }
 </style>

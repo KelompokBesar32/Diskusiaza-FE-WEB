@@ -36,12 +36,12 @@
         <br />
         <div id="profile" class="d-flex ml-2 mt-3">
           <b-img-lazy
+            v-if="user.foto == ''"
             src="https://picsum.photos/id/999/200/200"
-            rounded="circle"
-            height="50px"
+            class="img-dp"
           ></b-img-lazy>
+          <b-img-lazy v-else :src="user.foto" class="img-dp"></b-img-lazy>
           <div class="d-inline ml-2">
-            <!-- <h6>{{ $user.firstname }} {{ $user.lastname }}</h6> -->
             <h6>{{ fullName }}</h6>
             <p class="text-secondary text-sm">{{ user.email }}</p>
           </div>
@@ -91,11 +91,10 @@ export default {
     },
 
     fullName: {
-      // getter
       get() {
         return this.user.firstname + ' ' + this.user.lastname
       },
-      // setter
+
       // set(newValue) {
       //   // Note: we are using destructuring assignment syntax here.
       //   [this.firstName, this.lastName] = newValue.split(' ')
@@ -130,5 +129,12 @@ export default {
 
 .text-sm {
   font-size: 13px;
+}
+
+.img-dp {
+  object-fit: cover;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
 }
 </style>

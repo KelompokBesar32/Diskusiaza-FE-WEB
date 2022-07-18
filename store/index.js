@@ -1,6 +1,11 @@
 export const state = () => ({
   token: '',
   user: '',
+  followers: '',
+  following: '',
+  threads: '',
+  all_threads: '',
+  all_ruang: '',
 })
 
 export const mutations = {
@@ -10,6 +15,26 @@ export const mutations = {
 
   GET_USER(state, data) {
     state.user = data
+  },
+
+  GET_FOLLOWERS(state, data) {
+    state.followers = data
+  },
+
+  GET_FOLLOWING(state, data) {
+    state.following = data
+  },
+
+  GET_THREADS_BY_USER_ID(state, data) {
+    state.threads = data
+  },
+
+  GET_ALL_THREADS(state, data) {
+    state.all_threads = data
+  },
+
+  GET_ALL_RUANG(state, data) {
+    state.all_ruang = data
   },
 }
 
@@ -75,7 +100,93 @@ export const actions = {
       commit('SET_USER', '')
       this.$router.go({ path: '/' })
     } catch (e) {
-      alert('GET PROFILE', e.message)
+      alert('LOGOUT', e.message)
+    }
+  },
+
+  async GET_FOLLOWERS({ commit, state }) {
+    try {
+      await this.$axios.get('/t/user/followers', {
+        headers: {
+          Authorization: `Bearer ${state.token}`,
+        },
+      })
+      commit('GET_FOLLOWERS', '')
+    } catch (e) {
+      alert('GET_FOLLOWERS', e.message)
+    }
+  },
+
+  async GET_FOLLOWING({ commit, state }) {
+    try {
+      await this.$axios.get('/t/user/followed', {
+        headers: {
+          Authorization: `Bearer ${state.token}`,
+        },
+      })
+      commit('GET_FOLLOWING', '')
+    } catch (e) {
+      alert('GET_FOLLOWING', e.message)
+    }
+  },
+
+  async GET_THREADS_BY_USER_ID({ commit, state }) {
+    try {
+      const res = await this.$axios.get(`/t/therad/user/${state.user.id}`, {
+        headers: {
+          Authorization: `Bearer ${state.token}`,
+        },
+      })
+      commit('GET_THREADS_BY_USER_ID', res.data.data)
+    } catch (e) {
+      alert('GET_THREADS_BY_USER_ID', e.message)
+    }
+  },
+
+  async GET_ALL_THREADS({ commit, state }) {
+    try {
+      const res = await this.$axios.get('/t/therad', {
+        headers: {
+          Authorization: `Bearer ${state.token}`,
+        },
+      })
+      commit('GET_ALL_THREADS', res.data.data)
+    } catch (e) {
+      alert('GET_ALL_THREADS', e.message)
+    }
+  },
+
+  async GET_ALL_RUANG({ commit, state }) {
+    try {
+      const res = await this.$axios.get('/t/ruang', {
+        headers: {
+          Authorization: `Bearer ${state.token}`,
+        },
+      })
+      commit('GET_ALL_RUANG', res.data.data)
+    } catch (e) {
+      alert('GET_ALL_RUANG', e.message)
+    }
+  },
+
+  async CREATE_THREAD_NOT_IN_RUANG({ commit }, payload) {
+    try {
+      await this.$axios.post(
+        '/t/user/therad',
+        { data: payload },
+        {
+          headers: {
+            Authorization: `Bearer ${state.token}`,
+          },
+        }
+      )
+      this.$swal.fire({
+        icon: 'success',
+        title: 'Thread berhasil dibuat',
+      })
+      this.$router.go({ path: '/' })
+    } catch (e) {
+      alert('Create Thread Error', e.message)
     }
   },
 }

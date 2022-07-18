@@ -4,7 +4,14 @@ import createPersistedState from 'vuex-persistedstate'
 
 export default ({ store }) => {
   createPersistedState({
-    key: 'token',
-    paths: ['token'],
+    key: 'data',
+    paths: [
+      'token',
+      'user',
+      'followers',
+      'following',
+      'all_threads',
+      'threads',
+    ],
   })(store)
 }
