@@ -41,11 +41,20 @@
             height="50px"
           ></b-img-lazy>
           <div class="d-inline ml-2">
-            <h6>Acul Sudrajad</h6>
-            <p class="text-secondary">Sarjana Jomblo</p>
+            <!-- <h6>{{ $user.firstname }} {{ $user.lastname }}</h6> -->
+            <h6>{{ fullName }}</h6>
+            <p class="text-secondary text-sm">{{ user.email }}</p>
           </div>
-          <b-button variant="light" class="ml-auto mb-3" size="sm">
-            <span class="material-icons"> more_horiz </span>
+          <b-button
+            variant="light"
+            class="ml-auto mb-3"
+            size="sm"
+            @click="LOGOUT"
+          >
+            <font-awesome-icon
+              :icon="['fas', 'right-from-bracket']"
+              style="font-size: 17px"
+            />
           </b-button>
         </div>
       </div>
@@ -75,6 +84,38 @@ export default {
       ],
     }
   },
+
+  computed: {
+    user() {
+      return this.$store.state.user
+    },
+
+    fullName: {
+      // getter
+      get() {
+        return this.user.firstname + ' ' + this.user.lastname
+      },
+      // setter
+      // set(newValue) {
+      //   // Note: we are using destructuring assignment syntax here.
+      //   [this.firstName, this.lastName] = newValue.split(' ')
+      // }
+    },
+  },
+
+  created() {
+    this.GET_PROFILE()
+  },
+
+  methods: {
+    async GET_PROFILE() {
+      await this.$store.dispatch('GET_PROFILE')
+    },
+
+    async LOGOUT() {
+      await this.$store.dispatch('LOGOUT')
+    },
+  },
 }
 </script>
 
@@ -85,5 +126,9 @@ export default {
 #button-sidebar:hover {
   transition: 0.5s;
   background-color: #cce4f8;
+}
+
+.text-sm {
+  font-size: 13px;
 }
 </style>
